@@ -2,6 +2,10 @@ See [node-plan](https://github.com/superjoe30/node-plan).
 
 Backend is [node-imagemagick](https://github.com/rsms/node-imagemagick).
 
+### additional dependencies
+
+  * requires imagemagick CLI tools to be installed
+
 ### input
 
   * `tempPath` - image to generate a thumbnail for
@@ -26,4 +30,4 @@ Backend is [node-imagemagick](https://github.com/rsms/node-imagemagick).
 
 ### exports
 
-  * `bucket` - copied directly from options
+none
