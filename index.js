@@ -5,14 +5,14 @@ module.exports = {
   start: function(done) {
     var self = this;
 
-    self.settings.format = self.settings.format || 'png';
+    self.options.format = self.options.format || 'png';
 
     // consume tempPath
     var tempPath = self.context.tempPath;
     delete self.context.tempPath;
 
     var tempImgFile = self.context.makeTemp({
-      suffix: '.' + self.settings.format.toLowerCase()
+      suffix: '.' + self.options.format.toLowerCase()
     });
 
     var options = {
@@ -28,7 +28,7 @@ module.exports = {
       sharpening: self.options.sharpening,
       gravity: self.options.gravity,
     };
-    var method = self.settings.crop ? imagemagick.crop : imagemagick.resize;
+    var method = self.options.crop ? imagemagick.crop : imagemagick.resize;
     method(options, function(err) {
       if (err) {
         done(err);
