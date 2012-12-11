@@ -1,6 +1,19 @@
 var imagemagick = require('imagemagick')
   , path = require('path')
 
+var passThroughOpts = [
+  'quality',
+  'format',
+  'progressive',
+  'width',
+  'height',
+  'strip',
+  'filter',
+  'sharpening',
+  'gravity',
+];
+var hasOwn = {}.hasOwnProperty;
+
 module.exports = {
   start: function(done) {
     var self = this;
@@ -18,16 +31,12 @@ module.exports = {
     var options = {
       srcPath: tempPath,
       dstPath: tempImgFile,
-      quality: self.options.quality,
-      format: self.options.format,
-      progressive: self.options.progressive,
-      width: self.options.width,
-      height: self.options.height,
-      strip: self.options.strip,
-      filter: self.options.filter,
-      sharpening: self.options.sharpening,
-      gravity: self.options.gravity,
     };
+    passThroughOpts.forEach(function(opt) {
+      if (hasOwn.call(self.options, opt)) {
+        options[opt] = self.options[opt];
+      }
+    });
     var method = self.options.crop ? imagemagick.crop : imagemagick.resize;
     try {
       method(options, onComplete);
