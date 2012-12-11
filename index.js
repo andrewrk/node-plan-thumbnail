@@ -29,13 +29,18 @@ module.exports = {
       gravity: self.options.gravity,
     };
     var method = self.options.crop ? imagemagick.crop : imagemagick.resize;
-    method(options, function(err) {
+    try {
+      method(options, onComplete);
+    } catch (err) {
+      done(err);
+    }
+    function onComplete(err) {
       if (err) {
         done(err);
       } else {
         self.context.tempPath = tempImgFile;
         done();
       }
-    });
+    }
   }
 };
