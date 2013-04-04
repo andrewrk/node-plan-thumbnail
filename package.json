@@ -1,6 +1,6 @@
 {
   "name": "plan-thumbnail",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "plan plugin to generate a thumbnail for an image",
   "main": "index.js",
   "scripts": {
