@@ -24,7 +24,6 @@ describe("s3-download", function() {
       throw err;
     });
     plan.on('end', function(results) {
-      console.log(results);
       done();
     });
     plan.start({
